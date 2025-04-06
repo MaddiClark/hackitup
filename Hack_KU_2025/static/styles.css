@@ -1,0 +1,232 @@
+/* General Body Styles */
+body {
+    font-family: "Arial", sans-serif;
+    background: url("https://png.pngtree.com/thumb_back/fh260/background/20230412/pngtree-colorful-clouds-cartoon-clouds-fantasy-clouds-sky-cute-background-image_2204266.jpg"); /* Background image */
+    background-size: cover;
+    color: #704d56; /* Text color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+h1 {
+    color: #fcc4cf; /* I just like this pink. Might change later -M */
+    -webkit-text-stroke: #560b1a 0.5px; /* Text stroke for header 1 */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 50px;
+}
+h2 {
+    color: #fffbfc; /* header 2 color */
+    -webkit-text-stroke: #704d56 0.5px; /* Text stroke for header 2 */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 35px;
+}
+
+/* Button Styles */
+.button {
+    background-color: #fcc4cf;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #e7a6b3;
+}
+
+.small-button {
+    background-color: #bc7b8b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.small-button:hover {
+    background-color: #a3576a;
+}
+
+.sign-out {
+    background-color: #fcc4cf;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.sign-out:hover {
+    background-color: #e7a6b3;
+}
+
+/* Form Styles */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="range"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+/* List of Conditions */
+ul {
+    list-style-type: none;
+    padding: 0;
+    border-color: #e7a6b3;
+    border-width: 5px;
+}
+
+li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #fffbfc; /*f1dde2*/
+    border-radius: 5px;
+}
+
+.delete {
+    text-decoration: none;
+    color: #d9534f; /* Red for delete */
+}
+
+.delete:hover {
+    text-decoration: underline;
+}
+
+/* Container for the Page */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.condition-item {
+    display: flex;
+
+    .delete {
+        margin-left: auto;
+        vertical-align: center;
+    }
+
+    .timestamp {
+        font-size: 0.75em;
+        color: #666;
+    }
+}
+
+.side-view {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+
+    .panel {
+        width: 50%;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        h2 {
+            color: black;
+        }
+    }
+}
+
+.chat {
+    margin: 0 auto;
+    padding: 10px;
+
+    .history {
+        overflow-y: scroll;
+        max-height: 70%;
+        max-height: 60vh;
+    }
+
+    .message {
+        color: #333;
+        width: fit-content;
+        min-width: 15%;
+        max-width: 40%;
+        overflow-wrap: break-word;
+    }
+
+    .doctor {
+        background: #dcd5e7;
+    }
+
+    .patient {
+        background: #63b8e1;
+        text-align: right;
+        margin-left: auto;
+    }
+
+    .gemini {
+        max-width: 80%;
+        background: #fcc4cf;
+    }
+
+    .timestamp {
+        font-size: 0.75em;
+        color: #666;
+    }
+
+    .chat-input {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+
+        * {
+            margin: 0;
+        }
+
+        form {
+            padding: 0px;
+            box-shadow: none;
+        }
+
+        #chat-form {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .gemini-button {
+            height: 100%;
+            background-color: #dcd5e7;
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/51/Gemini_sparkle_v002.svg");
+            background-position: center;
+            background-size: 90%;
+        }
+    }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previously Reported Conditions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div></div><h1>Patient Journal</h1>
+        <a class='sign-out' href="{{ url_for('start') }}">Sign Out</a>
+
+        <!-- Form to Add New Item and Slider Value -->
+        <form action="/add" method="POST">
+            <input type="text" name="item_name" placeholder="Enter Condition" required>
+
+            <!-- Slider to Select Integer Value -->
+            <label for="slider">Severity:</label>
+            <input type="range" id="slider" name="item_value" min="1" max="10" value="1">
+            <span id="slider-value">1</span>
+
+            <br>
+
+            <!-- Date and Time Picker -->
+            <label for="date_time">Date and Time:</label>
+            <input type="datetime-local" id="date_time" name="date_time" required>
+
+            <br>
+
+            <button class='small-button' type="submit">Add Item</button>
+        </form>
+        <div class="side-view">
+          <div class="panel">
+              <h2>Conditions:</h2>
+              <ul>
+                  {% for item in items %}
+                  <li class="condition-item">
+                      <div>
+                        {{ item['name'] }} - Severity: {{ item['value'] }}
+                        <br>
+                        <span class="timestamp">{{ item['date_time'] }}</span>
+                      </div>
+                      <a class='delete' href="{{ url_for('delete_item', item_id=item['id']) }}">Remove</a>
+                  </li>
+                  {% endfor %}
+              </ul>
+          </div>
+
+          <!-- Chat form for communication betwen provider and patient -->
+          <div class="panel chat">
+            <h2>Chat</h2>
+            <div class="history" id="chat-history">
+              <ul>
+                  {% for message in messages %}
+                  <li class="message {{message['sender']}}">
+                      {{ message['content']|safe }}
+                      <br>
+                      <div class="timestamp">{{ message['date_time'] }} </div>
+                  </li>
+                  {% endfor %}
+              </ul>
+            </div>
+            <div class="chat-input">
+              <form id="chat-form" action="/patient/chat" method="POST">
+                <input class="chat-message" type="text" name="content" placeholder="Enter message" required>
+                <button class="small-button" type="submit">Send</button>
+              </form>
+              <form class="gemini-form" action="/patient/gemini" method="POST">
+                <button type="submit" class="small-button gemini-button"></button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+        <script>
+            // Display the value selected by the slider
+            const slider = document.getElementById("slider");
+            const sliderValue = document.getElementById("slider-value");
+            slider.addEventListener("input", function() {
+                sliderValue.textContent = slider.value;
+            });
+
+            // Scroll to the bottom of the chat history
+            var chatHistory = document.getElementById("chat-history");
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            // Connect to websocket
+            var socket = io();
+            socket.on('connect', function() {
+                socket.emit('connected');
+            });
+            socket.on('update', function() {
+                location.reload()
+            });
+        </script>
+    </div>
+</body>
+</html>

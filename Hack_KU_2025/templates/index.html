@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Hack It Up!</h1>
+        <h2>Your link to your medical team<h2>
+
+        <!-- set up for the patient sign in -->
+        <a class='button' href="{{ url_for('sign_in') }}">
+            Patient Sign-In
+        </a>
+
+        <!-- Set up for the doctor sign in -->
+        <a class='button' href="{{ url_for('doctor_sign_in') }}">
+            Doctor Sign-In
+        </a>
+    </div>
+</body>
+</html>

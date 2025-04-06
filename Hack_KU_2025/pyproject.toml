@@ -1,0 +1,11 @@
+[project]
+name = "hackitup"
+version = "0.1.0"
+description = "A direct patient-to-provider diagnosis tool"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "flask>=3.1.0",
+    "flask-socketio>=5.5.1",
+    "google-genai>=1.9.0",
+]
